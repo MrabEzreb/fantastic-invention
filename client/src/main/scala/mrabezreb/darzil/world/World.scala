@@ -2,23 +2,48 @@ package mrabezreb.darzil.world
 
 import java.awt.Graphics
 import mrabezreb.darzil.tile.Tile
+import java.io.ObjectOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.ObjectInputStream
+import java.io.FileInputStream
+import mrabezreb.darzil.input.KeyManager
+import mrabezreb.darzil.Game
+import mrabezreb.darzil.gfx.Camera
+import mrabezreb.darzil.Handler
+import java.awt.Rectangle
 
 @SerialVersionUID(100L)
-class World(path: String) extends Serializable {
-  private var width = 12
-  private var height = 12
+class World extends Serializable {
+  var width = 32
+  var height = 32
+  private var playerStartX = 0
+  private var playerStartY = 0
+  private val path: String = ""
   var tiles: Array[Array[Int]] = null
-  loadWorld(path)
+  private var game: Game = null
+  def this(p: String) = {
+    this()
+    genWorld()
+  }
+  def init() = {
+    game = Handler.game
+  }
   def tick() = {
     
   }
   def render(g: Graphics) = {
-    var xi = 0
-    var yi = 0
-    while(yi < height) {
-      xi = 0
-      while(xi < width) {
-        getTile(xi, yi).render(g, xi*48, yi*48)
+    val xStart = Math.max(0, Camera.xOffset / Tile.tileWidth.doubleValue())
+    val xEnd = Math.min(width, (Camera.xOffset + game.width) / Tile.tileWidth + 1)
+    val yStart = Math.max(0, Camera.yOffset / Tile.tileHeight.doubleValue())
+    val yEnd = Math.min(height, (Camera.yOffset + game.height) / Tile.tileHeight + 1)
+    
+    var xi = xStart.intValue()
+    var yi = yStart.intValue()
+    while(yi < yEnd.intValue()) {
+      xi = xStart.intValue()
+      while(xi < xEnd.intValue()) {
+    	  getTile(xi.intValue(), yi.intValue()).render(g, xi.intValue()*Tile.tileWidth - Camera.xOffset.intValue(), yi.intValue()*Tile.tileHeight - Camera.yOffset.intValue())
         xi += 1
       }
       yi += 1
@@ -26,25 +51,46 @@ class World(path: String) extends Serializable {
 //    tiles.foreach { tl => tl.foreach { t => getTile(x, y) } }
   }
   def getTile(x: Int, y: Int) = {
+    if(x < 0 || x >= width || y < 0 || y >= height) Tile.grassTile
     var ti = tiles(x)(y)
     var t = Tile.tiles(ti)
     if(t == null) Tile.grassTile
     t
   }
-  private def loadWorld(p: String) = {
+  def saveWorld(p: String) = {
+    new File("worlds").mkdirs()
+    val f = new File("worlds/"+p)
+    f.createNewFile()
+    val oos = new ObjectOutputStream(new FileOutputStream(f))
+    oos.writeObject(this)
+    oos.flush()
+    oos.close()
+  }
+  def genWorld() = {
     tiles = Array.ofDim[Array[Int]](width)
-    val tileRow = List(0,0,0,0,0,0,0,0,0,0,0,0).toArray
-    tiles.update(0, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(1, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(2, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(3, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(4, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(5, List(0,0,0,0,0,1,0,0,0,0,0,0).toArray)
-    tiles.update(6, List(0,0,0,0,0,0,1,0,0,0,0,0).toArray)
-    tiles.update(7, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(8, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(9, List(0,0,0,0,0,0,1,0,0,0,0,0).toArray)
-    tiles.update(10, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
-    tiles.update(11, List(0,0,0,0,0,0,0,0,0,0,0,0).toArray)
+    var yi = 0
+    var xi = 0
+    while(xi < width) {
+      yi = 0
+      val ya = Array.ofDim[Int](height)
+      while(yi < height) {
+        ya.update(yi, 0)
+        if(xi == 0 || yi == 0 || xi == width-1 || yi == height-1) {
+          ya.update(yi, 1)
+        }
+        yi += 1
+      }
+      tiles.update(xi, ya)
+      xi += 1
+    }
+  }
+}
+
+object World {
+  def loadWorld(p: String): World = {
+    val ois = new ObjectInputStream(new FileInputStream(new File("worlds/"+p)))
+    var w = ois.readObject().asInstanceOf[World]
+    w.game = Handler.game
+    w
   }
 }

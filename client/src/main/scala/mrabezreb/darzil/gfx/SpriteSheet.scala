@@ -9,9 +9,11 @@ class SpriteSheet(val image: Image, val w: Int, val h: Int) {
     var yi = 0
     while(xi <= image.getWidth-w) {
       var row = List.newBuilder[Image]
+      yi = 0
       while(yi <= image.getHeight-h) {
         row += Image.copy(image.getSubimage(xi, yi, w, h))
         yi += h
+//        println("Got xi" + xi + " yi" + yi)
       }
       t += row.result()
       xi += w

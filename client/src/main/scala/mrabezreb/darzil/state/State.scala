@@ -3,7 +3,7 @@ package mrabezreb.darzil.state
 import java.awt.Graphics
 import mrabezreb.darzil.Game
 
-abstract class State(var game: Game) {
+abstract class State() {
   def tick(): Unit
   def render(g: Graphics): Unit
 }

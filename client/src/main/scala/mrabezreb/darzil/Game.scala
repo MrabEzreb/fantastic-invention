@@ -9,6 +9,7 @@ import java.awt.Graphics
 import mrabezreb.darzil.state.State
 import mrabezreb.darzil.state.GameState
 import mrabezreb.darzil.input.KeyManager
+import mrabezreb.darzil.gfx.Camera
 
 class Game(val title: String, val width: Int, val height: Int) extends Runnable {
   
@@ -35,7 +36,8 @@ class Game(val title: String, val width: Int, val height: Int) extends Runnable 
     display = new Display(title, width, height)
     display.frame.addKeyListener(KeyManager)
     Assets.init()
-    State.state = new GameState(this)
+    Handler.game = this
+    State.state = new GameState()
   }
   
   def tick(): Unit = {
