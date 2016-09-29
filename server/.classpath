@@ -1,39 +1,45 @@
 <classpath>
+  <classpathentry kind="src" path="src\main\scala"/>
+  <classpathentry kind="src" path="src\main\java"/>
+  <classpathentry kind="src" path="src\main\resources"/>
+  <classpathentry kind="src" path="src\test\scala"/>
+  <classpathentry kind="src" path="src\test\java"/>
+  <classpathentry kind="src" path="src\test\resources"/>
   <classpathentry kind="src" path="/game" exported="true" combineaccessrules="false"/>
   <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-xml_2.11\srcs\scala-xml_2.11-1.0.6-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-xml_2.11\bundles\scala-xml_2.11-1.0.6.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-xml_2.11\srcs\scala-xml_2.11-1.0.6-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-xml_2.11\bundles\scala-xml_2.11-1.0.6.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-xml_2.11\docs\scala-xml_2.11-1.0.6-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-xml_2.11\docs\scala-xml_2.11-1.0.6-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\com.typesafe.akka\akka-actor_2.11\srcs\akka-actor_2.11-2.4.10-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\com.typesafe.akka\akka-actor_2.11\jars\akka-actor_2.11-2.4.10.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\com.typesafe.akka\akka-actor_2.11\srcs\akka-actor_2.11-2.4.10-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\com.typesafe.akka\akka-actor_2.11\jars\akka-actor_2.11-2.4.10.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\com.typesafe.akka\akka-actor_2.11\docs\akka-actor_2.11-2.4.10-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\com.typesafe.akka\akka-actor_2.11\docs\akka-actor_2.11-2.4.10-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\com.typesafe\config\srcs\config-1.3.0-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\com.typesafe\config\bundles\config-1.3.0.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\com.typesafe\config\srcs\config-1.3.0-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\com.typesafe\config\bundles\config-1.3.0.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\com.typesafe\config\docs\config-1.3.0-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\com.typesafe\config\docs\config-1.3.0-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.11\srcs\scala-java8-compat_2.11-0.7.0-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.11\bundles\scala-java8-compat_2.11-0.7.0.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.11\srcs\scala-java8-compat_2.11-0.7.0-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.11\bundles\scala-java8-compat_2.11-0.7.0.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.11\docs\scala-java8-compat_2.11-0.7.0-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-java8-compat_2.11\docs\scala-java8-compat_2.11-0.7.0-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\org.scalatest\scalatest_2.11\srcs\scalatest_2.11-3.0.0-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\org.scalatest\scalatest_2.11\bundles\scalatest_2.11-3.0.0.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\org.scalatest\scalatest_2.11\srcs\scalatest_2.11-3.0.0-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\org.scalatest\scalatest_2.11\bundles\scalatest_2.11-3.0.0.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\org.scalatest\scalatest_2.11\docs\scalatest_2.11-3.0.0-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\org.scalatest\scalatest_2.11\docs\scalatest_2.11-3.0.0-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\org.scalactic\scalactic_2.11\srcs\scalactic_2.11-3.0.0-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\org.scalactic\scalactic_2.11\bundles\scalactic_2.11-3.0.0.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\org.scalactic\scalactic_2.11\srcs\scalactic_2.11-3.0.0-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\org.scalactic\scalactic_2.11\bundles\scalactic_2.11-3.0.0.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\org.scalactic\scalactic_2.11\docs\scalactic_2.11-3.0.0-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\org.scalactic\scalactic_2.11\docs\scalactic_2.11-3.0.0-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
-  <classpathentry sourcepath="C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.11\srcs\scala-parser-combinators_2.11-1.0.4-sources.jar" kind="lib" path="C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.11\bundles\scala-parser-combinators_2.11-1.0.4.jar">
+  <classpathentry sourcepath="C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.11\srcs\scala-parser-combinators_2.11-1.0.4-sources.jar" kind="lib" path="C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.11\bundles\scala-parser-combinators_2.11-1.0.4.jar">
     <attributes>
-      <attribute name="javadoc_location" value="jar:file:C:\Users\bram.zerbe\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.11\docs\scala-parser-combinators_2.11-1.0.4-javadoc.jar!/"/>
+      <attribute name="javadoc_location" value="jar:file:C:\Users\wiki\.ivy2\cache\org.scala-lang.modules\scala-parser-combinators_2.11\docs\scala-parser-combinators_2.11-1.0.4-javadoc.jar!/"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
