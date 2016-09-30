@@ -12,16 +12,21 @@ import mrabezreb.darzil.Game
 import mrabezreb.darzil.gfx.Camera
 import mrabezreb.darzil.Handler
 import java.awt.Rectangle
+import mrabezreb.darzil.entity.EntityManager
+import mrabezreb.darzil.entity.Player
+import mrabezreb.darzil.entity.statics.Tree
 
 @SerialVersionUID(100L)
 class World extends Serializable {
   var width = 32
   var height = 32
-  private var playerStartX = 0
-  private var playerStartY = 0
+  private var playerStartX = 100
+  private var playerStartY = 250
   private val path: String = ""
   var tiles: Array[Array[Int]] = null
   private var game: Game = null
+  var entityManager = new EntityManager(new Player(playerStartX, playerStartY))
+  entityManager += new Tree(100, 150)
   def this(p: String) = {
     this()
     genWorld()
@@ -30,7 +35,7 @@ class World extends Serializable {
     game = Handler.game
   }
   def tick() = {
-    
+    entityManager.tick()
   }
   def render(g: Graphics) = {
     val xStart = Math.max(0, Camera.xOffset / Tile.tileWidth.doubleValue())
@@ -48,6 +53,7 @@ class World extends Serializable {
       }
       yi += 1
     }
+    entityManager.render(g)
 //    tiles.foreach { tl => tl.foreach { t => getTile(x, y) } }
   }
   def getTile(x: Int, y: Int) = {

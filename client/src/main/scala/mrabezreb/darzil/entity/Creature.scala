@@ -11,8 +11,8 @@ abstract class Creature(cx: Double, cy: Double, var cwidth: Int, var cheight: In
   var xMove, yMove = 0.0
   
   def move() = {
-    moveX()
-    moveY()
+    if(!checkEntityCollisions(xMove, 0)) moveX()
+    if(!checkEntityCollisions(0, yMove)) moveY()
   }
   
   def moveX() = {

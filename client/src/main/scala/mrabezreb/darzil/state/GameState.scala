@@ -14,7 +14,6 @@ import mrabezreb.darzil.Handler
 
 class GameState() extends State {
   
-  private val player = new Player(100, 100)
   private val world = getWorld()
   
   Camera.init()
@@ -32,9 +31,12 @@ class GameState() extends State {
 //    }
   }
   
+  def init() = {
+    
+  }
+  
   def tick(): Unit = {
     world.tick()
-    player.tick()
 //    Camera.move(1, 1)  
   }
   def render(g: Graphics): Unit = {
@@ -42,6 +44,5 @@ class GameState() extends State {
 //    Tile.tiles(0).render(g, 0, 0)
 //    Tile.tiles(1).render(g, 48, 0)
     world.render(g)
-    player.render(g)
   }
 }

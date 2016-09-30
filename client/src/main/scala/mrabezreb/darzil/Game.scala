@@ -10,6 +10,8 @@ import mrabezreb.darzil.state.State
 import mrabezreb.darzil.state.GameState
 import mrabezreb.darzil.input.KeyManager
 import mrabezreb.darzil.gfx.Camera
+import mrabezreb.darzil.input.MouseManager
+import mrabezreb.darzil.state.MenuState
 
 class Game(val title: String, val width: Int, val height: Int) extends Runnable {
   
@@ -35,9 +37,13 @@ class Game(val title: String, val width: Int, val height: Int) extends Runnable 
   def init(): Unit = {
     display = new Display(title, width, height)
     display.frame.addKeyListener(KeyManager)
+    display.frame.addMouseListener(MouseManager)
+    display.frame.addMouseMotionListener(MouseManager)
+    display.canvas.addMouseListener(MouseManager)
+    display.canvas.addMouseMotionListener(MouseManager)
     Assets.init()
     Handler.game = this
-    State.state = new GameState()
+    State.state = State.menuState
   }
   
   def tick(): Unit = {

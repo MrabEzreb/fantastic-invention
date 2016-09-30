@@ -1,5 +1,6 @@
 package mrabezreb.darzil.gfx;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
@@ -40,6 +41,14 @@ public class Image extends BufferedImage {
 	
 	public Image copy() {
 		return copy(this);
+	}
+	
+	public Image resize(int w, int h) {
+		Image ret = new Image(w, h, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = ret.getGraphics();
+		g.drawImage(this, 0, 0, w, h, null);
+		g.dispose();
+		return ret;
 	}
 
 }
