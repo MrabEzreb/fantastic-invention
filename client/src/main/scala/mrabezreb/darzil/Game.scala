@@ -43,7 +43,7 @@ class Game(val title: String, val width: Int, val height: Int) extends Runnable 
     display.canvas.addMouseMotionListener(MouseManager)
     Assets.init()
     Handler.game = this
-    State.state = State.menuState
+    State.setState(State.menuState)
   }
   
   def tick(): Unit = {

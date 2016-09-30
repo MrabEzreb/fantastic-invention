@@ -50,5 +50,26 @@ public class Image extends BufferedImage {
 		g.dispose();
 		return ret;
 	}
+	
+	public Image scale(Double factor) {
+		return resize((int)Math.round(factor * getWidth()), (int)Math.round(factor * getHeight()));
+	}
+	
+	public Image append(Image below) {
+		Image ret = new Image(Math.max(below.getWidth(), this.getWidth()), below.getHeight() + this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics g = ret.getGraphics();
+		g.drawImage(this, ret.getWidth() / 2 - this.getWidth() / 2, 0, null);
+		g.drawImage(below, ret.getWidth() / 2 - below.getWidth() / 2, this.getHeight(), null);
+		g.dispose();
+		return ret;
+	}
+	
+	public Image addBackground(Image background) {
+		Image ths = copy(background);
+		Graphics g = ths.getGraphics();
+		g.drawImage(this, 0, 0, background.getWidth(), background.getHeight(), null);
+		g.dispose();
+		return ths;
+	}
 
 }
