@@ -4,10 +4,17 @@ import mrabezreb.darzil.Game
 import mrabezreb.darzil.Handler
 import mrabezreb.darzil.tile.Tile
 import java.awt.Rectangle
+import mrabezreb.darzil.entity.item.Item
+import mrabezreb.darzil.entity.item.ToolType
 
 abstract class Creature(cx: Double, cy: Double, var cwidth: Int, var cheight: Int) extends Entity(cx, cy, cwidth, cheight) {
   var speed = Creature.defaultSpeed
   var xMove, yMove = 0.0
+  
+  def hurt(equipped: ToolType): Unit = {
+    if(equipped.typeName.equals("")) return
+    hurt(equipped.aDamage)
+  }
   
   def move() = {
     if(!checkEntityCollisions(xMove, 0)) moveX()

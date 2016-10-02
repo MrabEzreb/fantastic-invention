@@ -23,12 +23,15 @@ object Assets {
   var options1: Image = null
   var options2: Image = null
   var cookie: Font = null
+  var dejavumono: Font = null
   var farming_fishing: SpriteSheet = null
   def init() = {
-    farming_fishing = new SpriteSheet(Image.load("/daneeku/tilesets/farming_fishing.png"), 32, 32)
+    dejavumono = Font.createFont(Font.TRUETYPE_FONT, getClass.getResourceAsStream("/DejaVuSansMono.ttf"))
     cookie = Font.createFont(Font.TRUETYPE_FONT, getClass.getResourceAsStream("/cookie.ttf"))
     var ge = GraphicsEnvironment.getLocalGraphicsEnvironment
     ge.registerFont(cookie)
+    ge.registerFont(dejavumono)
+    farming_fishing = new SpriteSheet(Image.load("/daneeku/tilesets/farming_fishing.png"), 32, 32)
     text = Image.load("/ui/words.png")
     play1 = Image.copy(text.getSubimage(0, 0, 288, 144))
     play2 = Image.copy(text.getSubimage(0,144,288,144))

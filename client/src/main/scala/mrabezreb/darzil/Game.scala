@@ -12,6 +12,7 @@ import mrabezreb.darzil.input.KeyManager
 import mrabezreb.darzil.gfx.Camera
 import mrabezreb.darzil.input.MouseManager
 import mrabezreb.darzil.state.MenuState
+import mrabezreb.darzil.cheat.Console
 
 class Game(val title: String, val width: Int, val height: Int) extends Runnable {
   
@@ -51,6 +52,7 @@ class Game(val title: String, val width: Int, val height: Int) extends Runnable 
       State.state.tick()
     }
     KeyManager.tick()
+    Console.tick()
   }
   
   def render(): Unit = {

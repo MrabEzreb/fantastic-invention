@@ -6,18 +6,28 @@ import mrabezreb.darzil.Handler
 import mrabezreb.darzil.gfx.Camera
 import scala.collection.mutable.ArrayBuffer
 import mrabezreb.darzil.gfx.Assets
+import java.awt.Rectangle
 
-class Item(var texture: Image, var name: String, val id: Int) {
+class Item(var texture: Image, var name: String, val id: Int, val toolType: ToolType) {
   var x = 0
   var y = 0
   var count = 1
+  var bounds = new Rectangle(x, y, Item.itemWidth, Item.itemHeight)
+  var pickedUp = false
+  
+  def this(texture: Image, name: String, id: Int) = {
+    this(texture, name, id, new ToolType(0.0, 0.0, ""))
+  }
   
 //  println(Item.items.toString())
   Item.items.insert(id, this)
 //  Item.items.update(id, this)
   
   def tick() = {
-    
+    if(Handler.world.entityManager.player.getCollisionBounds(0.0, 0.0).intersects(bounds)) {
+      pickedUp = true
+      Handler.world.entityManager.player.inventory += this
+    }
   }
   
   def createNew(x1: Int, y1: Int): Item = {
@@ -29,6 +39,8 @@ class Item(var texture: Image, var name: String, val id: Int) {
   def setPosition(x: Int, y: Int) = {
     this.x = x
     this.y = y
+    bounds.x = x
+    bounds.y = y
   }
   
   def render(g: Graphics): Unit = {
@@ -43,7 +55,8 @@ class Item(var texture: Image, var name: String, val id: Int) {
 object Item {
   val itemWidth = 32
   val itemHeight = 32
-  val pickedUp = -1
+  
+  val hands = new ToolType(0.0, 0.0, "")
   
   var items: ArrayBuffer[Item] = null
   var woodItem: Item = null
@@ -53,3 +66,5 @@ object Item {
     woodItem = new Item(Assets.farming_fishing(1, 1), "Wood", 0)
   }
 }
+
+class ToolType(val sDamage: Double, val aDamage: Double, val typeName: String) {}

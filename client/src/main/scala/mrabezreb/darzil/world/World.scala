@@ -30,6 +30,9 @@ class World extends Serializable {
   private var game: Game = null
   var entityManager = new EntityManager(new Player(playerStartX, playerStartY))
   entityManager += new Tree(100, 150)
+  entityManager += new Tree(200, 150)
+  entityManager += new Tree(100, 350)
+  entityManager += new Tree(200, 350)
 //  entityManager += new LogPile(150, 150)
   def this(p: String) = {
     this()

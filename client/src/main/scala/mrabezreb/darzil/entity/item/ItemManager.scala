@@ -9,7 +9,7 @@ object ItemManager {
   
   def tick() = {
     items.foreach { i => i.tick() }
-    items = items.filter { i => i.count != Item.pickedUp }
+    items = items.filter { i => !i.pickedUp }
   }
   
   def render(g: Graphics) = {

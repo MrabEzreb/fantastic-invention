@@ -13,6 +13,7 @@ import java.awt.Rectangle
 import mrabezreb.darzil.Handler
 import mrabezreb.darzil.gfx.LPCAnimation
 import mrabezreb.darzil.gfx.DirectedAnimation
+import mrabezreb.darzil.inventory.Inventory
 
 class Player(var px: Double, var py: Double) extends Creature(px, py, Creature.defaultWidth, Creature.defaultHeight) {
   
@@ -20,6 +21,8 @@ class Player(var px: Double, var py: Double) extends Creature(px, py, Creature.d
   val animLeft = new Animation(250, 4, 1, Assets.player)
   val animUp = new Animation(250, 4, 2, Assets.player)
   val animRight = new Animation(250, 4, 3, Assets.player)
+  
+  var inventory = new Inventory
   
   var anims = new LPCAnimation(Image.load("/character/player.png"))
   
@@ -39,6 +42,7 @@ class Player(var px: Double, var py: Double) extends Creature(px, py, Creature.d
     }
     move()
     Camera.centerOnEntity(this)
+    inventory.tick()
   }
   
   bounds.x = 10
@@ -120,7 +124,8 @@ class Player(var px: Double, var py: Double) extends Creature(px, py, Creature.d
   def render(g: Graphics) = {
 //    g.drawImage(getCurrentAnimationFrame(), x.intValue() - Camera.xOffset.intValue(), y.intValue() - Camera.yOffset.intValue(), width, height, null)
     g.drawImage(anims(), x.intValue() - Camera.xOffset.intValue(), y.intValue() - Camera.yOffset.intValue(), width, height, null)
-    g.setColor(Color.red)
+//    g.setColor(Color.red)
+    inventory.render(g)
 //    g.drawRect(x.intValue() + bounds.x.intValue() - Camera.xOffset.intValue(), y.intValue() + bounds.y.intValue() - Camera.yOffset.intValue(), bounds.width, bounds.height)
   }
   

@@ -42,7 +42,8 @@ class MenuState() extends State {
     MouseManager.uiManager = uim
     uim += playButton
     uim += optionsButton
-    uim += optionsButton2 
+    uim += optionsButton2
+    println("hi")
   }
   
   def tick(): Unit = {
@@ -52,12 +53,15 @@ class MenuState() extends State {
 //      }
 //    }
 //    Camera.move(1, 1)
+//    println("hi2")
     uim.tick()
+//    println("hi3")
   }
   def render(g: Graphics): Unit = {
 //    g.drawImage(s, 0, 0, null)
 //    g.drawImage(s2, 300, 0, null)
 //    g.drawImage(s3, 0, 400, null)
+//    println("hi4")
     var rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON)
     g.asInstanceOf[Graphics2D].addRenderingHints(rh)
     g.setFont(Assets.cookie.deriveFont(75f))
@@ -65,6 +69,7 @@ class MenuState() extends State {
     uim.render(g)
     g.drawString("Play", 300, 300)
     g.drawString("Options", 300, 400)
+//    println("hi5")
 //    g.drawImage(Assets.playT, 100, 100, null)
 //    g.drawImage(Assets.saucers(0,0), 100, 100, null)
 //    Tile.tiles(0).render(g, 0, 0)

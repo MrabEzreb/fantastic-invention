@@ -4,6 +4,8 @@ import java.awt.Graphics
 import mrabezreb.darzil.Game
 import java.awt.Rectangle
 import mrabezreb.darzil.Handler
+import mrabezreb.darzil.entity.item.Item
+import mrabezreb.darzil.entity.item.ToolType
 
 abstract class Entity(var x: Double, var y: Double, var width: Int, var height: Int) {
   var health = Entity.defaultHealth
@@ -16,6 +18,8 @@ abstract class Entity(var x: Double, var y: Double, var width: Int, var height: 
       die()
     }
   }
+  
+  def hurt(equipped: ToolType)
   
   def die(): Unit
   

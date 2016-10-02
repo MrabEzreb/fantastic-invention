@@ -5,9 +5,16 @@ import java.awt.Graphics
 import mrabezreb.darzil.gfx.Assets
 import mrabezreb.darzil.gfx.Camera
 import java.awt.Rectangle
+import mrabezreb.darzil.entity.item.Item
+import mrabezreb.darzil.entity.item.ToolType
 
 class LogPile(tx: Float, ty: Float) extends StaticEntity(tx, ty, 32, 32) {
   bounds = new Rectangle(8, 8, 32, 32)
+  
+  def hurt(equipped: ToolType) = {
+    if(equipped.typeName.equals("")) hurt(equipped.sDamage)
+  }
+  
   def tick() = {
     
   }

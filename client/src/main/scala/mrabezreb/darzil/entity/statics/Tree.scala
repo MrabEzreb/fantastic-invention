@@ -8,9 +8,15 @@ import java.awt.Rectangle
 import mrabezreb.darzil.Handler
 import mrabezreb.darzil.entity.item.ItemManager
 import mrabezreb.darzil.entity.item.Item
+import mrabezreb.darzil.entity.item.ToolType
 
 class Tree(tx: Float, ty: Float) extends StaticEntity(tx, ty, Tile.tileWidth, Tile.tileHeight*2) {
   bounds = new Rectangle(20, 48, 8, 16)
+  
+  def hurt(equipped: ToolType) = {
+    if(equipped.typeName.equals("Axe")) hurt(equipped.sDamage)
+  }
+  
   def tick() = {
     
   }
