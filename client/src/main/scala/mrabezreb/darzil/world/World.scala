@@ -15,6 +15,9 @@ import java.awt.Rectangle
 import mrabezreb.darzil.entity.EntityManager
 import mrabezreb.darzil.entity.Player
 import mrabezreb.darzil.entity.statics.Tree
+import mrabezreb.darzil.entity.statics.LogPile
+import mrabezreb.darzil.entity.item.ItemManager
+import mrabezreb.darzil.entity.item.Item
 
 @SerialVersionUID(100L)
 class World extends Serializable {
@@ -27,14 +30,17 @@ class World extends Serializable {
   private var game: Game = null
   var entityManager = new EntityManager(new Player(playerStartX, playerStartY))
   entityManager += new Tree(100, 150)
+//  entityManager += new LogPile(150, 150)
   def this(p: String) = {
     this()
     genWorld()
   }
   def init() = {
     game = Handler.game
+    Item.init()
   }
   def tick() = {
+    ItemManager.tick()
     entityManager.tick()
   }
   def render(g: Graphics) = {
@@ -53,6 +59,7 @@ class World extends Serializable {
       }
       yi += 1
     }
+    ItemManager.render(g)
     entityManager.render(g)
 //    tiles.foreach { tl => tl.foreach { t => getTile(x, y) } }
   }

@@ -6,6 +6,18 @@ import java.awt.Rectangle
 import mrabezreb.darzil.Handler
 
 abstract class Entity(var x: Double, var y: Double, var width: Int, var height: Int) {
+  var health = Entity.defaultHealth
+  var active = true
+  
+  def hurt(amt: Double) = {
+    health -= amt
+    if(health <= 0) {
+      active = false
+      die()
+    }
+  }
+  
+  def die(): Unit
   
   var bounds = new Rectangle(0,0,width,height)
   
@@ -31,4 +43,8 @@ abstract class Entity(var x: Double, var y: Double, var width: Int, var height: 
     }
     collides
   }
+}
+
+object Entity {
+  val defaultHealth = 10.0
 }

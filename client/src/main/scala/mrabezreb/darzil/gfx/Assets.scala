@@ -23,7 +23,9 @@ object Assets {
   var options1: Image = null
   var options2: Image = null
   var cookie: Font = null
+  var farming_fishing: SpriteSheet = null
   def init() = {
+    farming_fishing = new SpriteSheet(Image.load("/daneeku/tilesets/farming_fishing.png"), 32, 32)
     cookie = Font.createFont(Font.TRUETYPE_FONT, getClass.getResourceAsStream("/cookie.ttf"))
     var ge = GraphicsEnvironment.getLocalGraphicsEnvironment
     ge.registerFont(cookie)

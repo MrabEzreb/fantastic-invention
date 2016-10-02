@@ -27,6 +27,7 @@ class EntityManager(var player: Player) {
   
   def tick() = {
     entities.foreach { e => e.tick() }
+    entities = entities.filter { e => e.active }
     sort()
   }
   
