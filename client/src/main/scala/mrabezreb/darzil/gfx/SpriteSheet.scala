@@ -3,11 +3,13 @@ package mrabezreb.darzil.gfx
 import scala.collection.mutable.ArrayBuffer
 
 class SpriteSheet(val image: Image, val w: Int, val h: Int) {
+//  println("Spritesheet w/h " + w+"/"+h)
   private def gen(): List[List[Image]] = {
     val t = List.newBuilder[List[Image]]
     var xi = 0
     var yi = 0
-    while(xi <= image.getWidth-w) {
+    val xm = image.getWidth-w
+    while(xi <= xm) {
       var row = List.newBuilder[Image]
       yi = 0
       while(yi <= image.getHeight-h) {

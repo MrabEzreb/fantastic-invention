@@ -7,8 +7,10 @@ import mrabezreb.darzil.gfx.Camera
 import java.awt.Rectangle
 import mrabezreb.darzil.entity.item.Item
 import mrabezreb.darzil.entity.item.ToolType
+import mrabezreb.darzil.entity.Spawnable
 
-class LogPile(tx: Float, ty: Float) extends StaticEntity(tx, ty, 32, 32) {
+@Spawnable
+class LogPile(tx: Double, ty: Double) extends StaticEntity(tx, ty, 32, 32) {
   bounds = new Rectangle(8, 8, 32, 32)
   
   def hurt(equipped: ToolType) = {

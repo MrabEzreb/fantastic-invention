@@ -8,7 +8,8 @@ lazy val commonDeps = Seq(
     "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.6",
     "org.scalatest" %% "scalatest" % "3.0.0" % "test",
     "com.typesafe.akka" %% "akka-actor" % "2.4.10",
-    "co.technius" %% "scalua" % "0.0.1-SNAPSHOT"
+    "co.technius" %% "scalua" % "0.0.1-SNAPSHOT",
+    "org.reflections" % "reflections" % "0.9.10"
 )
 
 lazy val game = project

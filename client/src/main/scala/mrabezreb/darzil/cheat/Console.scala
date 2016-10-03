@@ -18,6 +18,26 @@ import java.awt.event.ActionEvent
 import co.technius.scalua.Globals
 import co.technius.scalua.LuaFunction
 import co.technius.scalua.LuaValue
+import co.technius.scalua.LuaTable
+import co.technius.scalua.LuaInt
+import co.technius.scalua.LuaString
+import mrabezreb.darzil.entity.Entity
+import mrabezreb.darzil.entity.statics.Tree
+import org.reflections.Reflections
+import org.reflections.util.ConfigurationBuilder
+import org.reflections.scanners.TypeAnnotationsScanner
+import mrabezreb.darzil.entity.Spawnable
+import mrabezreb.darzil.entity.Spawnable
+import mrabezreb.darzil.entity.Spawnable
+import java.lang.annotation.Annotation
+import scala.collection.mutable.ArrayBuffer
+import java.lang.reflect.Constructor
+import mrabezreb.darzil.entity.Spawnable
+import org.reflections.scanners.SubTypesScanner
+import scala.annotation.Annotation
+import java.lang.annotation.Annotation
+import org.reflections.util.ClasspathHelper
+import co.technius.scalua.LuaDouble
 
 object Console {
   
@@ -31,7 +51,35 @@ object Console {
     LuaValue.Nil
   }
   
+  val ref = new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("mrabezreb.darzil.entity")).setScanners(new TypeAnnotationsScanner(), new SubTypesScanner()))
+  
+  val spawnabless = ref.getTypesAnnotatedWith(classOf[Spawnable])
+  val it = spawnabless.iterator()
+  val spawnables = ArrayBuffer.empty[Class[_]]
+  val spawnablesL = LuaTable()
+  var in = 0
+  while(it.hasNext()) {
+    in += 1
+    val i = it.next()
+//    println(i.getSimpleName)
+    spawnables.append(i)
+    spawnablesL.update(in, i.getSimpleName)
+  }
+  
+  val entityManager = LuaTable()
+  entityManager.update("add", LuaFunction.singleReturn { li =>
+    val tipe = LuaString.unapply(li(0)).get
+    val x = li(1).wrapped.todouble()
+    val y = li(2).wrapped.todouble()
+    val chosen = spawnables.filter { clss => clss.getSimpleName.equals(tipe) }(0)
+    val const = chosen.getDeclaredConstructor(classOf[Double], classOf[Double])
+    var entity: Entity = const.newInstance(double2Double(x),double2Double(y)).asInstanceOf[Entity]
+    Handler.world.entityManager += entity
+    LuaValue.Nil
+  })
+  
   luaG("print") = print
+  luaG("entityManager") = entityManager
   
   var frame = new JFrame("Cheat Console")
   frame.setSize(width, height)

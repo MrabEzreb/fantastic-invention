@@ -1,6 +1,8 @@
 package mrabezreb.darzil.gfx;
 
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
@@ -70,6 +72,27 @@ public class Image extends BufferedImage {
 		g.drawImage(this, 0, 0, background.getWidth(), background.getHeight(), null);
 		g.dispose();
 		return ths;
+	}
+	
+	public Image gridify(int xi, int yi) {
+		Image ret = new Image(xi*getWidth(), yi*getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics g = ret.getGraphics();
+		for(int x = 0; x < xi; x++) {
+			for(int y = 0; y < yi; y++) {
+				g.drawImage(this, x*getWidth(), y*getHeight(), null);
+			}
+		}
+		g.dispose();
+		return ret;
+	}
+	
+	public Image rotate(Float deg) {
+		Image bufferedImage = copy();
+		Double rad = Math.toRadians(deg);
+		AffineTransform transform = new AffineTransform();
+	    transform.rotate(rad, bufferedImage.getWidth()/2, bufferedImage.getHeight()/2);
+	    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+	    return Image.copy(op.filter(bufferedImage, null));
 	}
 
 }

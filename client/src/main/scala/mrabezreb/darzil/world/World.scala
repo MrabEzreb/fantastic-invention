@@ -18,6 +18,7 @@ import mrabezreb.darzil.entity.statics.Tree
 import mrabezreb.darzil.entity.statics.LogPile
 import mrabezreb.darzil.entity.item.ItemManager
 import mrabezreb.darzil.entity.item.Item
+import mrabezreb.darzil.tile.SurroundingTiles
 
 @SerialVersionUID(100L)
 class World extends Serializable {
@@ -43,8 +44,13 @@ class World extends Serializable {
     Item.init()
   }
   def tick() = {
+//    val start = System.currentTimeMillis()
     ItemManager.tick()
+//    val item = System.currentTimeMillis()
     entityManager.tick()
+//    val entity = System.currentTimeMillis()
+//    println("item " + (item - start))
+//    println("entity " + (entity - item))
   }
   def render(g: Graphics) = {
     val xStart = Math.max(0, Camera.xOffset / Tile.tileWidth.doubleValue())
@@ -52,18 +58,23 @@ class World extends Serializable {
     val yStart = Math.max(0, Camera.yOffset / Tile.tileHeight.doubleValue())
     val yEnd = Math.min(height, (Camera.yOffset + game.height) / Tile.tileHeight + 1)
     
+//    val start = System.currentTimeMillis()
     var xi = xStart.intValue()
     var yi = yStart.intValue()
     while(yi < yEnd.intValue()) {
       xi = xStart.intValue()
       while(xi < xEnd.intValue()) {
-    	  getTile(xi.intValue(), yi.intValue()).render(g, xi.intValue()*Tile.tileWidth - Camera.xOffset.intValue(), yi.intValue()*Tile.tileHeight - Camera.yOffset.intValue())
+    	  getTile(xi.intValue(), yi.intValue()).render(g, (xi.intValue() - 1)*Tile.tileWidth - Camera.xOffset.intValue(), (yi.intValue() - 1)*Tile.tileHeight - Camera.yOffset.intValue(), new SurroundingTiles(xi, yi, tiles))
         xi += 1
       }
       yi += 1
     }
     ItemManager.render(g)
+//    val item = System.currentTimeMillis()
     entityManager.render(g)
+//    val entity = System.currentTimeMillis()
+//    println("itemr " + (item - start))
+//    println("entityr " + (entity - item))
 //    tiles.foreach { tl => tl.foreach { t => getTile(x, y) } }
   }
   def getTile(x: Int, y: Int) = {
@@ -93,6 +104,11 @@ class World extends Serializable {
         ya.update(yi, 0)
         if(xi == 0 || yi == 0 || xi == width-1 || yi == height-1) {
           ya.update(yi, 1)
+        }
+        if(xi > 5 && xi < 10) {
+          if(yi > 5 && yi < 10) {
+            ya.update(yi, 2)
+          }
         }
         yi += 1
       }

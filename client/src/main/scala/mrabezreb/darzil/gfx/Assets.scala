@@ -25,7 +25,11 @@ object Assets {
   var cookie: Font = null
   var dejavumono: Font = null
   var farming_fishing: SpriteSheet = null
+  var plowed_soil: SliceTile = null
+  var plowed_soil_1: SliceSheet = null
   def init() = {
+    plowed_soil = new SliceTile(Image.load("/daneeku/tilesets/plowed_soil.png"), "Plowed-Soil", false)
+//    plowed_soil_1 = new SliceSheet(Image.copy(plowed_soil.getSubimage(0, 64, 96, 96)), new Rectangle(32, 32, 32, 32))
     dejavumono = Font.createFont(Font.TRUETYPE_FONT, getClass.getResourceAsStream("/DejaVuSansMono.ttf"))
     cookie = Font.createFont(Font.TRUETYPE_FONT, getClass.getResourceAsStream("/cookie.ttf"))
     var ge = GraphicsEnvironment.getLocalGraphicsEnvironment
